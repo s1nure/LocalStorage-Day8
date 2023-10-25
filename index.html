@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Перемикач теми</title>
+		<style>
+			.dark-theme {
+				background-color: #333;
+				color: #fff;
+				transition: background-color 0.3s, color 0.3s;
+			}
+
+			.light-theme {
+				background-color: #fff;
+				color: #333;
+				transition: background-color 0.3s, color 0.3s;
+			}
+		</style>
+	</head>
+	<body>
+		<label for="theme-switch" class="switch-label">Тема:</label>
+		<input type="checkbox" id="theme-switch" class="theme-switch" />
+	</body>
+	<script>
+		const themeSwitch = document.getElementById('theme-switch')
+		themeSwitch.addEventListener('change', function () {
+			if (this.checked) {
+				document.body.classList.add('dark-theme')
+				document.body.classList.remove('light-theme')
+			} else {
+				document.body.classList.add('light-theme')
+				document.body.classList.remove('dark-theme')
+			}
+		})
+
+		themeSwitch.addEventListener('change', function () {
+			if (this.checked) {
+				document.body.classList.add('dark-theme')
+				document.body.classList.remove('light-theme')
+				localStorage.setItem('theme', 'dark')
+			} else {
+				document.body.classList.add('light-theme')
+				document.body.classList.remove('dark-theme')
+				localStorage.setItem('theme', 'light')
+			}
+		})
+
+		const savedTheme = localStorage.getItem('theme')
+		if (savedTheme === 'dark') {
+			themeSwitch.checked = true
+			document.body.classList.add('dark-theme')
+		}
+	</script>
+</html>
